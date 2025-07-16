@@ -44,7 +44,7 @@ public class MyForeGroundService extends Service implements MediaPlayer.OnComple
     public static final String ACTION_PLAY = "ACTION_PLAY";
     public static final String ACTION_START = "ACTION_START";
     public static final String ACTION_NEXT = "ACTION_NEXT";
-    public static final String ACTION_PREVIES = "ACTION_PREVIES";
+    public static final String ACTION_PREVIOUS = "ACTION_PREVIOUS";
     public static final String ACTION_SEEK = "ACTION_SEEK";
 
     // مفاتيح تمرير البيانات
@@ -122,8 +122,8 @@ public class MyForeGroundService extends Service implements MediaPlayer.OnComple
                     case ACTION_NEXT:
                         next();
                         break;
-                    case ACTION_PREVIES:
-                        privies();
+                    case ACTION_PREVIOUS:
+                        previous();
                         break;
                     case ACTION_SEEK:
                         int seekPositons = intent.getIntExtra(SEEK_POSITION_KEY, 0);
@@ -208,7 +208,7 @@ public class MyForeGroundService extends Service implements MediaPlayer.OnComple
         }
     }
 
-    public boolean privies() {
+    public boolean previous() {
         if (curentSongNumber > 0) {
             curentSongNumber--;
             initMediaPlayer(curentSongNumber);
@@ -238,16 +238,16 @@ public class MyForeGroundService extends Service implements MediaPlayer.OnComple
         stopIntent.setAction(ACTION_STOP_FOREGROUND_SERVICE);
         PendingIntent stopPendingIntent = PendingIntent.getService(this, 0, stopIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Intent puseIntent = new Intent(this, MyForeGroundService.class);
-        puseIntent.setAction(ACTION_PAUSE);
-        pausePendingIntent = PendingIntent.getService(this, 0, puseIntent, PendingIntent.FLAG_IMMUTABLE);
+        Intent pauseIntent = new Intent(this, MyForeGroundService.class);
+        pauseIntent.setAction(ACTION_PAUSE);
+        pausePendingIntent = PendingIntent.getService(this, 0, pauseIntent, PendingIntent.FLAG_IMMUTABLE);
 
         Intent nextIntent = new Intent(this, MyForeGroundService.class);
         nextIntent.setAction(ACTION_NEXT);
         nextPendingIntent = PendingIntent.getService(this, 0, nextIntent, PendingIntent.FLAG_IMMUTABLE);
 
         Intent previousIntent = new Intent(this, MyForeGroundService.class);
-        previousIntent.setAction(ACTION_PREVIES);
+        previousIntent.setAction(ACTION_PREVIOUS);
         previousPendingIntent = PendingIntent.getService(this, 0, previousIntent, PendingIntent.FLAG_IMMUTABLE);
 
         String NOTIFICATION_CHANNEL_ID = "xom.music.test.offline";

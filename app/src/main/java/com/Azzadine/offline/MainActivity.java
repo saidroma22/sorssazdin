@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
     static boolean active = false;
     private boolean serviceBound = false;
 
-    private ImageView palyAndPuseIV, next, previose, moreButton;
+    private ImageView playPauseIV, next, previous, moreButton;
     private TextView songName, totalTimeTV, leftTimeTV;
     private SeekBar songSeekBar;
 
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
 
     private final Runnable runnable = () -> {
         if (serviceBound && mService.mediaPlayer != null) {
-            updateProgresLayout(mService.mediaPlayer.getDuration(), mService.mediaPlayer.getCurrentPosition());
+            updateProgressLayout(mService.mediaPlayer.getDuration(), mService.mediaPlayer.getCurrentPosition());
         } else {
-            updateProgresLayout(0, 0);
+            updateProgressLayout(0, 0);
         }
         leftTimeTV.postDelayed(this.runnable, 250);
     };
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
             MediaPlayer mediaPlayer = mService.mediaPlayer;
             boolean isPlaying = mediaPlayer != null && mediaPlayer.isPlaying();
             if (mediaPlayer != null) {
-                inithilizeLayout(mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition(), mService.curentSongNumber, isPlaying);
+                initializeLayout(mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition(), mService.curentSongNumber, isPlaying);
             }
         }
 
@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
         totalTimeTV = findViewById(R.id.total_time_tv);
         leftTimeTV = findViewById(R.id.left_time_tv);
         songSeekBar = findViewById(R.id.song_seek_bar);
-        palyAndPuseIV = findViewById(R.id.play_and_pause);
+        playPauseIV = findViewById(R.id.play_and_pause);
         next = findViewById(R.id.next);
-        previose = findViewById(R.id.previous);
+        previous = findViewById(R.id.previous);
         moreButton = findViewById(R.id.more_button); // زر النقاط الثلاث
 
         // تشغيل القائمة المنبثقة المخصصة
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
             }
         });
 
-        palyAndPuseIV.setOnClickListener(view -> playOrPause());
+        playPauseIV.setOnClickListener(view -> playOrPause());
         next.setOnClickListener(view -> {
             if (++counter >= Constants.ad_interval) {
                 AdsManager.getInstance().showInterstitialAd();
@@ -161,12 +161,12 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
             next();
         });
 
-        previose.setOnClickListener(view -> {
+        previous.setOnClickListener(view -> {
             if (++counter >= Constants.ad_interval) {
                 AdsManager.getInstance().showInterstitialAd();
                 counter = 0;
             }
-            previose();
+            previous();
         });
     }
 
@@ -191,22 +191,22 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
 
     private void next() {
         if (isMyServiceRunning(MyForeGroundService.class) && mService != null && mService.next()) {
-            palyAndPuseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
+            playPauseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
         }
     }
 
-    private void previose() {
-        if (isMyServiceRunning(MyForeGroundService.class) && mService != null && mService.privies()) {
-            palyAndPuseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
+    private void previous() {
+        if (isMyServiceRunning(MyForeGroundService.class) && mService != null && mService.previous()) {
+            playPauseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
         }
     }
 
     private void playOrPause() {
         if (isMyServiceRunning(MyForeGroundService.class) && mService != null && mService.mediaPlayer != null) {
             if (mService.mediaPlayer.isPlaying()) {
-                palyAndPuseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_play));
+                playPauseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_play));
             } else {
-                palyAndPuseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
+                playPauseIV.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
             }
             mService.playOrPause();
         } else {
@@ -288,19 +288,19 @@ public class MainActivity extends AppCompatActivity implements SongFragment.OnLi
     public void onMediaStart() {
         int songnumber = mService.curentSongNumber;
         int songTime = mService.mediaPlayer.getDuration();
-        inithilizeLayout(songTime, 0, songnumber, true);
+        initializeLayout(songTime, 0, songnumber, true);
     }
 
-    private void inithilizeLayout(int songTime, int leftTime, int songnumber, boolean isPlaying) {
+    private void initializeLayout(int songTime, int leftTime, int songnumber, boolean isPlaying) {
         songName.setText(DummyContent.ITEMS.get(songnumber).content);
         int minutes = (songTime / 1000) / 60;
         int seconds = (songTime / 1000) % 60;
         totalTimeTV.setText(minutes + ":" + seconds);
-        updateProgresLayout(songTime, leftTime);
-        palyAndPuseIV.setImageDrawable(getResources().getDrawable(isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play));
+        updateProgressLayout(songTime, leftTime);
+        playPauseIV.setImageDrawable(getResources().getDrawable(isPlaying ? android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play));
     }
 
-    private void updateProgresLayout(int totalTime, int leftTime) {
+    private void updateProgressLayout(int totalTime, int leftTime) {
         int secLeftTime = leftTime / 1000;
         int secTotalTime = totalTime / 1000;
         songSeekBar.setMax(secTotalTime);
