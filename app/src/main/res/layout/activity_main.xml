@@ -10,20 +10,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <!-- ✅ زر القائمة المنبثقة (ثلاث نقاط) -->
-        <ImageView
-            android:id="@+id/more_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:padding="8dp"
-            app:srcCompat="@drawable/option_icon"
-            android:contentDescription="@string/more_options"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -155,6 +141,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ✅ زر القائمة المنبثقة (ثلاث نقاط) يوضع في الأعلى دوماً -->
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/option_icon"
+            android:contentDescription="@string/more_options"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="4dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
