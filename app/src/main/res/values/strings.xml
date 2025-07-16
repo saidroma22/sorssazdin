@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">روائع الشاب عزالدين بدون نت</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="more_apps">More Apps</string>
+    <string name="rate">Rate This App</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="skip">Play Audios</string>
+
+    <string name="ads">Ads</string>
+
+    <string name="call_rington">Set as phone ringtone</string>
+    <string name="alarmRingtone">Set as alarm ringtone</string>
+    <string name="please_give_the_permission">Please give the permission</string>
+    <string name="please_give_the_permission_message">Please agree to the permission, so the app will work properly</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_to_alarem">Added as alarm ringtone</string>
+    <string name="add_to_rington">Added as phone ringtone</string>
+
+    <!-- ✅ هذا السطر يعالج الخطأ -->
+    <string name="more_options">المزيد</string>
+    <string name="share_app">Share the app</string>
+</resources>

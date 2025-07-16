@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/callRingtone"
+        android:title="@string/call_rington"
+        android:icon="@drawable/call_icon"
+        />
+
+    <item
+        android:id="@+id/notificationRingtone"
+        android:title="@string/alarmRingtone"
+        android:icon="@drawable/alarem_2_icon"
+        />
+</menu>

@@ -1,0 +1,160 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- ✅ زر القائمة المنبثقة (ثلاث نقاط) -->
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/option_icon"
+            android:contentDescription="@string/more_options"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingTop="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- ✅ شريط التشغيل -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#212326"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="center_horizontal">
+
+                <!-- ✅ اسم الأغنية + أزرار -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/song_name_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:text="Select Song"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingStart="8dp"
+                        android:fontFamily="@font/montserrat_regular" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/previous"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="6dp"
+                            android:background="@drawable/bg_circle_dark"
+                            app:srcCompat="@drawable/ic_baseline_skip_previous_24"
+                            android:fillColor="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/play_and_pause"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:padding="6dp"
+                            android:background="@drawable/bg_circle_primary"
+                            app:srcCompat="@drawable/ic_baseline_play_arrow_24"
+                            android:fillColor="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/next"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="6dp"
+                            android:background="@drawable/bg_circle_dark"
+                            app:srcCompat="@drawable/ic_baseline_skip_next_24"
+                            android:fillColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ✅ شريط الزمن -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/total_time_tv"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:text="00:00"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:fontFamily="@font/montserrat_regular" />
+
+                    <SeekBar
+                        android:id="@+id/song_seek_bar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:progress="0"
+                        android:progressTint="#DC5F00"
+                        android:progressBackgroundTint="#444"
+                        android:thumbTint="#DC5F00" />
+
+                    <TextView
+                        android:id="@+id/left_time_tv"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:text="00:00"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:fontFamily="@font/montserrat_regular" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ✅ قائمة الأغاني -->
+            <FrameLayout
+                android:id="@+id/songs_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <!-- ✅ إعلان -->
+        <com.solodroid.ads.sdk.ui.BannerAdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

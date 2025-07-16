@@ -1,0 +1,15 @@
+<resources>
+    <!-- 🎨 ألوان رئيسية للتطبيق -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- 🖤 لون خلفية شفافة للأسطح (ActionBar/Dialog overlay) -->
+    <color name="black_overlay">#66000000</color>
+
+    <!-- ✳️ ألوان إضافية اختيارية -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_dark">#444444</color>
+</resources>
